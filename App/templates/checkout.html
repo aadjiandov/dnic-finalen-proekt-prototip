@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Checkout</title>
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group h3 {
+            color: lightblue;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group hr {
+            border-color: blue;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 250px;
+            padding: 5px;
+        }
+        .form-group input[type="submit"] {
+            width: auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group .row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .form-group .row label {
+            width: 150px;
+            margin-left:15px
+        }
+        .form-group .row input {
+            width: 250px;
+            margin-left: 10px;
+        }
+
+
+    </style>
+    <script>
+        function showPopup() {
+            alert("You ordered successfully");
+        }
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'robots' %}">Vacurob</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-ic  on"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h3 style="color:lightblue">Checkout</h3>
+    <form method="post" action="{% url 'checkout' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <h3>Details</h3>
+            <hr>
+            <div class="row">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="row">
+                <label for="surname">Surname:</label>
+                <input type="text" id="surname" name="surname" required>
+            </div>
+            <div class="row">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="row">
+                <label for="phone">Mobile Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <h3>Payment Method</h3>
+                <hr>
+                <div class="payment-options">
+                    <label for="cash">Cash:</label>
+                    <input type="radio" id="cash" name="payment" value="cash" required>
+                    <label for="online">Online Payment:</label>
+                    <input type="radio" id="online" name="payment" value="online" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h3>Address</h3>
+            <hr>
+            <div class="row">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="row">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="row">
+                <label for="postcode">Postcode:</label>
+                <input type="text" id="postcode" name="postcode" required>
+            </div>
+            <div class="row">
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Place Order" onclick="showPopup()">
+        </div>
+    </form>
+</div>
+</body>
+</html>
